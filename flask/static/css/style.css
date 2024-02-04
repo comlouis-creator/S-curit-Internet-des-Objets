@@ -1,0 +1,42 @@
+*{
+	transition:0.5s;
+	font-family: 'Quicksand', sans-serif;
+	/*margin: 0;*/
+	box-sizing: border-box;
+	padding: 0;
+	color:white;
+}
+
+body{
+background-color: #FBDA61;
+background-image: linear-gradient(10deg, #FBDA61 0%, #FF5ACD 100%);
+
+}
+ 
+.center-x{
+	position: absolute;
+	transform: translate(-50%,0%);
+	left: 50%;
+}
+
+#data{
+	bottom: 30px;
+	height: 600px;
+	width: 1400px;
+	padding: 20px;
+	border-radius: 15px;
+	background-color: rgba(50, 50, 50, 0.4);
+	overflow-y: scroll;
+	overflow-x: hidden;
+	backdrop-filter: blur(20px);
+}
+
+#intro{
+	top:30px;
+	padding:5px;
+	width: 600px;
+	text-align: center;
+	border-radius: 10px;
+	background-color: rgba(50, 50, 50, 0.4);
+	backdrop-filter: blur(20px);
+}

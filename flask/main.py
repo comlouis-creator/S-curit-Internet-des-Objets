@@ -3,8 +3,8 @@ import requests  # pour faire des requêtes à nist
 
 from flask import *
 
-api_url = "https://services.nvd.nist.gov/rest/json/cves/2.0"  # url de l'api nist
-params = {"param1": "valeur1", "param2": "valeur2"}
+api_url = "https://services.nvd.nist.gov/rest/json/cves/2.0?cvssV3Severity=LOW "  # url de l'api nist prenant une sévérité basse
+params = {"param1": "vakeur1", "param2": "valeur2"}
 app = Flask(__name__)
 
 

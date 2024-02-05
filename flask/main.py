@@ -3,8 +3,9 @@ import requests  # pour faire des requêtes à nist
 
 from flask import *
 
-api_url = "https://services.nvd.nist.gov/rest/json/cves/2.0?cvssV3Severity=LOW "  # url de l'api nist prenant une sévérité basse
-params = {"param1": "vakeur1", "param2": "valeur2"}
+api_url = "https://services.nvd.nist.gov/rest/json/cves/2.0?cvssV3Severity=HIGH"  # url de l'api nist prenant une sévérité basse
+api_url2 = "https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=Microsoft"
+params = {"param1": "valeur1", "param2": "valeur2"}
 app = Flask(__name__)
 
 
@@ -15,7 +16,7 @@ def index():
 
 @app.route("/home")
 def home():
-    response = requests.get(api_url)  # FAIRE UNE REQUETE AVEC L'API NIST
+    response = requests.get(api_url2)  # FAIRE UNE REQUETE AVEC L'API NIST
     # params=params
     if response.status_code == 200:
         json_data = response.json()

@@ -3,39 +3,27 @@
 <table>
 	<thead>
 		<tr>
-			{% for key,value in json_data.vulnerabilities[0].items() %}
-			<th>{{ key }}</th>
-			{% endfor %}
+			<th>CVE</th>
+			<th>Description</th>
+			<th>Severity</th>
+			<th>Date</th>
+			<th>Link</th>
+
 		</tr>
 	</thead>
 
 	<tbody>
-		
-		{% for vulnerability in json_data.vulnerabilites %}
-			<tr>
-				{% for key,value in vulnerability.items() %}
-					<th>{{ value }}</th>
-				{% endfor %}
-			</tr>
+	
+		{% for vulnerability in data %}
+		<tr>
+			<th>{{ vulnerability['cve']['id'] }}</th>
+			<th>{{ vulnerability['cve']['descriptions'][0]['value'] }}</th>
+			<th>{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</th>
+			<th>{{ vulnerability['cve']['published'] }}</th>
+			<th><a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}">Link</a></th>
+		</tr>
 		{% endfor %}
-
 	</tbody>
 
 </table>
-    <pre>{{ json_data | tojson(indent=2) }}</pre>
-
-    <script type="text/javascript">
-    	var json = json3.items
-var fields = Object.keys(json[0])
-var replacer = function(key, value) { return value === null ? '' : value } 
-var csv = json.map(function(row){
-  return fields.map(function(fieldName){
-    return JSON.stringify(row[fieldName], replacer)
-  }).join(',')
-})
-csv.unshift(fields.join(',')) // add header column
- csv = csv.join('\r\n');
-console.log(csv)
-    </script>
-
 {% endblock %}

@@ -18,11 +18,25 @@
 		<tr>
 			<th>{{ vulnerability['cve']['id'] }}</th>
 			<th>{{ vulnerability['cve']['descriptions'][0]['value'] }}</th>
+
+			{% if 'cvssMetricV2' in vulnerability['cve']['metrics'] %}
 			<th>{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</th>
+			{% elif 'cvssMetricV30' in vulnerability['cve']['metrics'] %}
+			<th>{{ vulnerability['cve']['metrics']['cvssMetricV30'][0]['baseSeverity'] }}</th>
+			{% else %}
+			<th>Unknown</th>
+			{% endif %}
 			<th>{{ vulnerability['cve']['published'] }}</th>
-			<th><a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}"><span class="material-symbols-outlined">
-link
-</span></a></th>
+			{% if vulnerability['cve']['references']|length > 0 %}
+			<th><a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}">
+				<span class="material-symbols-outlined">
+					link
+				</span>
+				</a>
+			</th>
+			{% else %}
+			<th>Unknown</th>
+			{% endif %}
 		</tr>
 		{% endfor %}
 	</tbody>

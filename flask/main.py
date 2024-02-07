@@ -28,7 +28,7 @@ def home():
         if response.status_code == 200:
             print("request successful")
             json_data = response.json()
-            print(type(json_data))
+            print(json_data)
             data=collect_data(json_data)
             print(data[0]['cve']['id'])
             return render_template("home.html", title="Home", data=data)
@@ -38,7 +38,8 @@ def home():
     elif request.method=='POST':
         print("POST METHOD DETECTED")
         parameters={}
-        parameters['cvssV2Severity']=request.form['severity']
+        if request.form['severity'] != 'ALL':
+            parameters['cvssV2Severity'] = request.form['severity']
         parameters['keywordSearch']=request.form['keyWords']
         #PROBLÈME DANS LE FORMAT DE LA DATE
         if request.form['dateAfter'] !="":

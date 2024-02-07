@@ -20,7 +20,9 @@
 			<th>{{ vulnerability['cve']['descriptions'][0]['value'] }}</th>
 			<th>{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</th>
 			<th>{{ vulnerability['cve']['published'] }}</th>
-			<th><a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}">Link</a></th>
+			<th><a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}"><span class="material-symbols-outlined">
+link
+</span></a></th>
 		</tr>
 		{% endfor %}
 	</tbody>

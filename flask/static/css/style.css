@@ -40,3 +40,94 @@ background-image: linear-gradient(10deg, #FBDA61 0%, #FF5ACD 100%);
 	background-color: rgba(50, 50, 50, 0.4);
 	backdrop-filter: blur(20px);
 }
+
+#filter-div{
+	position: absolute;
+	left: -400px;
+	width: 500px;
+	top: 30%;
+	background-color: rgba(50, 50, 50, 0.4);
+	backdrop-filter: blur(20px);
+	z-index: 2;
+	padding: 20px;
+	border-radius: 15px;
+	font-size: 15px;
+}
+
+#filter-button{
+	float: right;
+	right: 0;
+	top:0;
+	align-items: end;
+	cursor: pointer;
+	padding:15px;
+	border-radius: 50px;
+}
+
+#filter-button:hover{
+	background: rgba(255, 255, 255, 0.7);
+}
+
+#filter-div.active{
+	left: 60px;
+}
+
+select{
+	font-size: 20px;
+	text-decoration: none;
+	outline: none;
+	border: 1px solid rgba(255, 255, 255,0.8);
+	background-color: transparent;
+	padding: 5px;
+	border-radius: 10px;	 
+}
+
+input{
+	font-size: 12px;
+	text-decoration: none;
+	outline: none;
+	background: rgba(100, 100, 100, 0.6);
+	background-color: transparent;
+	border:1px solid rgba(255, 255, 255,0.8);
+	border-radius: 10px;
+	padding: 5px;
+	font-size: 15px;
+}
+
+::placeholder{
+	color: rgb(255, 255, 255);
+}
+
+.options{
+	display: flex;
+	/*background: rgba(200, 200, 200, 0.3);*/
+	justify-content: space-between;
+	padding: 5px;
+}
+#submit-div
+{	
+	padding: 10px;
+	justify-content: center;
+}
+input[type='submit']{
+	padding: 10px;
+	font-size: 2em;
+	border: none;
+	cursor:pointer;
+}
+input[type='submit']:hover{
+	background: rgba(255, 255, 255,0.5);
+}
+
+form{
+	width: 350px;
+}
+
+.warning{
+	padding: 5px;
+	background-color: rgba(240, 37, 37, 0.6);
+	border-radius: 13px;
+	font-size: 14px;
+	width: 360px;
+	position: relative;
+}

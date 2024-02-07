@@ -9,6 +9,9 @@
 	<style>
   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 	</style>
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 </head>
 
 <body>
@@ -17,6 +20,55 @@
    		<h1>Welcome to the Home Page!</h1>
     	<p>This is the home page content.</p>
 	</div>
+	
+	<div id="filter-div">
+		<span class="material-symbols-outlined" id="filter-button">
+			tune
+		</span>
+		<form method="post" action="/home">
+			<h1>Filter Options</h1>
+				<div class="options">
+					<h2>Severity</h2>
+						<select name="severity" id="severity">
+							<option value="LOW">LOW</option>
+							<option value="MEDIUM">MEDIUM</option>
+							<option value="HIGH">HIGH</option>
+						</select>
+				</div>
+
+				<div class="options" >
+					<h2>Published Before</h2><input type="date" name="dateBefore">
+				</div>
+
+				<div class="options" >
+					<h2>Published After</h2><input type="date" name="dateAfter">
+				</div>
+					<h3 class="warning">
+						<span class="material-symbols-outlined">
+							warning
+						</span>
+						Do not exceed 120 days between the two limit dates
+						<span class="material-symbols-outlined">
+							warning
+						</span>
+					</h3>
+				<div class="options" >
+					<h2>Word Search</h2><input type="text" name="keyWords" placeholder="Search">
+				</div>
+			<div id="submit-div">
+				<input type="submit" value="Confirm">
+				<input type="reset" value="reset">
+			</div>
+		</form>
+	</div>
+<script>
+	let button=document.getElementById("filter-button");
+	let div=document.getElementById("filter-div");
+	button.addEventListener('click',function(){
+		div.classList.toggle("active")
+	})
+
+</script>
 	<div id="data" class="center-x">
 	 {% block content %}{% endblock %}
 	</div>

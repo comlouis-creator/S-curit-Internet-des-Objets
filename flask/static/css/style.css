@@ -141,3 +141,25 @@ span:hover
 {
     background-color: rgba(255,255,255,0.6);
 }
+
+#search-div{
+	vertical-align: center;
+	/*float: inline-end;*/
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.2);
+	border-radius: 20px;
+	position: fixed;
+	z-index: 4;
+	right: 280px;
+	top: 300px;
+}
+
+#search-div input{
+	padding: 15px;
+	font-size: 15px;
+}
+
+.material-symbols-outlined{
+	cursor: pointer;
+	vertical-align: middle;
+}

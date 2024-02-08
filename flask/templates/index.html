@@ -71,7 +71,14 @@
 	})
 
 </script>
+
+	<div id="search-div">
+				<span class="material-symbols-outlined" id="searchButton" onclick="filterFunc('input',searchInput,cases)">search</span>
+				<input type="text" placeholder='Search' id="searchbar">
+	</div>
+
 	<div id="data" class="center-x">
+		<div style="width: 100%;height: 100px;background: transparent;"></div>
 	 {% block content %}{% endblock %}
 	</div>
 </body>

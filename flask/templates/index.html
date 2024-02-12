@@ -26,40 +26,61 @@
 			tune
 		</span>
 		<form method="post" action="/home">
-			<h1>Filter Options</h1>
-				<div class="options">
-					<h2>Severity</h2>
-						<select name="severity" id="severity">
-							<option value="ALL">ALL</option>
-							<option value="LOW">LOW</option>
-							<option value="MEDIUM">MEDIUM</option>
-							<option value="HIGH">HIGH</option>
-							<!--<option value="CRITICAL">CRITICAL</option>-->
+			<div id="filter-container">
+				<h1>Filter Options</h1>
+
+				<div id="filter-1">
+					<div class="options">
+						<h2>Severity</h2>
+							<select name="severity" id="severity">
+								<option value="ALL">ALL</option>
+								<option value="LOW">LOW</option>
+								<option value="MEDIUM">MEDIUM</option>
+								<option value="HIGH">HIGH</option>
+								<!--<option value="CRITICAL">CRITICAL</option>-->
+							</select>
+					</div>
+
+					<div class="options" >
+						<h2>Published Before</h2><input type="date" name="dateBefore">
+					</div>
+
+					<div class="options" >
+						<h2>Published After</h2><input type="date" name="dateAfter">
+					</div>
+						<h3 class="warning">
+							<span class="material-symbols-outlined">
+								warning
+							</span>
+							Do not exceed 120 days between the two limit dates
+							<span class="material-symbols-outlined">
+								warning
+							</span>
+						</h3>
+						<div class="options" >
+							<h2>Word Search</h2><input type="text" name="keyWords" placeholder="Search">
+						</div>
+
+						<h1>More filters : <span class="material-symbols-outlined">
+							add
+							</span></h1>
+
+					<div id="submit-div">
+						<input type="submit" value="Confirm">
+						<input type="reset" value="Reset" id="reset">
+					</div>
+				</div>
+
+				<div id="filter-2" class="glass">
+					<div>
+						<h2>Brands</h2>
+						<select>
+							<option></option>
 						</select>
+					</div>
 				</div>
 
-				<div class="options" >
-					<h2>Published Before</h2><input type="date" name="dateBefore">
-				</div>
 
-				<div class="options" >
-					<h2>Published After</h2><input type="date" name="dateAfter">
-				</div>
-					<h3 class="warning">
-						<span class="material-symbols-outlined">
-							warning
-						</span>
-						Do not exceed 120 days between the two limit dates
-						<span class="material-symbols-outlined">
-							warning
-						</span>
-					</h3>
-				<div class="options" >
-					<h2>Word Search</h2><input type="text" name="keyWords" placeholder="Search">
-				</div>
-			<div id="submit-div">
-				<input type="submit" value="Confirm">
-				<input type="reset" value="reset">
 			</div>
 		</form>
 	</div>
@@ -78,8 +99,8 @@
 	</div>
 
 	<div id="data" class="center-x">
-		<div style="width: 100%;height: 100px;background: transparent;"></div>
-	 {% block content %}{% endblock %}
+		<div style="width: 100%;height: 100px;background: transparent;">
+	 {% block content %}{% endblock %}</div>
 	</div>
 </body>
 </html>

@@ -203,9 +203,10 @@ th{
 }
 
 #objects-brands{
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 .flex{
 	display: flex;
+	gap: 20px;
 }

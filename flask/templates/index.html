@@ -61,10 +61,6 @@
 							<h2>Word Search</h2><input type="text" name="keyWords" placeholder="Search">
 						</div>
 
-						<h1>More filters : <span class="material-symbols-outlined">
-							add
-							</span></h1>
-
 					<div id="submit-div">
 						<input type="submit" value="Confirm">
 						<input type="reset" value="Reset" id="reset">
@@ -102,35 +98,40 @@
 		<!-- <div style="width: 100%;height: 100px;background: transparent;"></div> -->
 	 {% block content %}{% endblock %}
 			
-	 	<div id="objects-brands" class="flex">
-			<div id="objects">
-
-				<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Wireless Hearphones</h2><input type="checkbox"></div>
-				<div class="flex"><h2>SmartWatches</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Tablets</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Fridges</h2><input type="checkbox"></div>
-				<div class="flex"><h2>GPS</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Cars</h2><input type="checkbox"></div>
-				<div class="flex"><h2>RFID</h2><input type="checkbox"></div>
-				<div class="flex"><h2></h2><input type="checkbox"></div>
-				<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
-
+	 	<div id="objects-brands" class="flex" style="flex-direction: row;">
+			
+			<div id="objects" style="width: 600px;">
+				<h1>Category of objects</h1>
+				<div class="flex" style="flex-wrap: wrap;">
+					<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Wireless Hearphones</h2><input type="checkbox"></div>
+					<div class="flex"><h2>SmartWatches</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Tablets</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Fridges</h2><input type="checkbox"></div>
+					<div class="flex"><h2>GPS</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Cars</h2><input type="checkbox"></div>
+					<div class="flex"><h2>RFID</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Microphones</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Wifi</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Arduino</h2><input type="checkbox"></div>
+				</div>
 			</div>
-
-			<div id="brands">
-				<div class="flex"><h2>Panasonic</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Wireless Hearphones</h2><input type="checkbox"></div>
-				<div class="flex"><h2>SmartWatches</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Tablets</h2><input type="checkbox"></div>
-				<div class="flex"><h2></h2><input type="checkbox"></div>
-				<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
-				<div class="flex"><h2>Camera</h2><input type="checkbox"></div>
+			
+			<div id="brands" style="width: 600px;">
+				<h1 style=>Brands</h1>
+				<div class="flex" style="flex-wrap: wrap;">
+					<div class="flex"><h2>Panasonic</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Apple</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Samsung</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Hawlett Packard (HP)</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Androïd</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Huaweï</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Logitech</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Xiaomi</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Google</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Realme</h2><input type="checkbox"></div>
+					<div class="flex"><h2>Sony</h2><input type="checkbox"></div>
+				</div>
 			</div>
 		</div>
 

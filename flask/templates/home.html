@@ -73,4 +73,22 @@
 	}
 </script>
 
+<script>
+// Dans votre fichier JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    var invisibleElement = document.getElementById('objects-brands');
+    
+    // Obtenir l'URL actuelle
+    var currentURL = window.location.href;
+
+    // Vérifier si l'URL correspond à celle spécifique où vous souhaitez rendre l'élément invisible
+    if (currentURL.indexOf('/home') !== -1) {
+        invisibleElement.style.visibility = 'hidden';
+    } else {
+        invisibleElement.style.visibility = 'visible';
+    }
+});
+
+</script>
+
 {% endblock %}

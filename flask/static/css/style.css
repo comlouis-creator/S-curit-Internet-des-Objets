@@ -237,7 +237,7 @@ th{
 
 #objects-brands input:checked + label:before{
 	/* display: none; */
-	border: 0px solid white;
+	border: 1px solid transparent;
 	background: rgba(255, 255, 255, 0.5);
 	/* transform:translate(0,40px) ; */
 	z-index: 2;

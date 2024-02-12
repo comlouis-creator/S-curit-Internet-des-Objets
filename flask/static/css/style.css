@@ -210,3 +210,35 @@ th{
 	display: flex;
 	gap: 20px;
 }
+
+#objects-brands input[type="checkbox"]{
+	display: none;
+	cursor: pointer;
+}
+
+#objects-brands label h2{
+	padding: 15px;
+	margin: 0px;
+}
+
+#objects-brands label:before{
+	content: '';
+	display: block;
+	cursor: pointer;
+	transform: translate(0,70px);
+	width: inherit;
+	z-index: 5;
+	height: 40px;
+	background: transparent;
+	padding: 20px;
+	/* border-radius:20px; */
+	border: 1px solid white;
+}
+
+#objects-brands input:checked + label:before{
+	/* display: none; */
+	border: 0px solid white;
+	background: rgba(255, 255, 255, 0.5);
+	/* transform:translate(0,40px) ; */
+	z-index: 2;
+}

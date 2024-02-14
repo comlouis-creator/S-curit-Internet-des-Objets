@@ -17,6 +17,9 @@ background-image: radial-gradient( circle 916px at -1.1% 50.2%,  rgba(16,233,139
 	position: absolute;
 	transform: translate(-50%,0%);
 	left: 50%;
+	/* display: flex;
+	justify-content: center;
+	flex-direction: column; */
 }
 
 #data{
@@ -197,9 +200,15 @@ span
 	border-radius: 30px ;
 }
 
-th{
+table, th,td{
+border: 1px solid white;
+text-align: center;
+}
+
+td{
 	max-width: 1000px;
 	word-wrap: break-word;
+	
 }
 
 #objects-brands{
@@ -208,7 +217,7 @@ th{
 
 .flex{
 	display: flex;
-	gap: 20px;
+	gap: 10px;
 }
 
 #objects-brands input[type="checkbox"]{
@@ -217,7 +226,7 @@ th{
 }
 
 #objects-brands label h2{
-	padding: 15px;
+	padding: 5px;
 	margin: 0px;
 }
 

@@ -2,93 +2,76 @@
 {% block content %}
 
 <a href="/"><span class="material-symbols-outlined">
-	arrow_back
-	</span></a>
+    arrow_back
+    </span></a>
 
-<table>
-	<thead>
-		<tr>
-			<th>CVE</th>
-			<th>Description</th>
-			<th>Severity</th>
-			<th>Date</th>
-			<th>Link</th>
+<table border="1" cellspacing="0"> 
+    <thead>
+        <tr>
+            <th>CVE</th>
+            <th>Description</th>
+            <th>Severity</th>
+            <th>Date</th>
+            <th>Link</th>
+        </tr>
+    </thead>
 
-		</tr>
-	</thead>
+    <tbody>
+    
+        {% for vulnerability in data %}
+        <tr>
+            <td class="thSearch">{{ vulnerability['cve']['id'] }}</td>
+            <td class="thSearch">{{ vulnerability['cve']['descriptions'][0]['value'] }}</td>
 
-	<tbody>
-	
-		{% for vulnerability in data %}
-		<tr id="table">
-			<th class="thSearch">{{ vulnerability['cve']['id'] }}</th>
-			<th class="thSearch">{{ vulnerability['cve']['descriptions'][0]['value'] }}</th>
-
-			{% if 'cvssMetricV2' in vulnerability['cve']['metrics'] %}
-			<th class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</th>
-			{% elif 'cvssMetricV30' in vulnerability['cve']['metrics'] %}
-			<th class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV30'][0]['baseSeverity'] }}</th>
-			{% else %}
-			<th class="thSearch">Unknown</th>
-			{% endif %}
-			<th class="thSearch">{{ vulnerability['cve']['published'] }}</th>
-			{% if vulnerability['cve']['references']|length > 0 %}
-			<th class="thSearch"><a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}">
-				<span class="material-symbols-outlined">
-					link
-				</span>
-				</a>
-			</th>
-			{% else %}
-			<th class="thSearch">Unknown</th>
-			{% endif %}
-		</tr>
-		{% endfor %}
-	</tbody>
-	
+            {% if 'cvssMetricV2' in vulnerability['cve']['metrics'] %}
+            <td class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</td>
+            {% elif 'cvssMetricV30' in vulnerability['cve']['metrics'] %}
+            <td class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV30'][0]['baseSeverity'] }}</td>
+            {% else %}
+            <td class="thSearch">Unknown</td>
+            {% endif %}
+            
+            <td class="thSearch">{{ vulnerability['cve']['published'] }}</td>
+            
+            {% if vulnerability['cve']['references']|length > 0 %}
+            <td class="thSearch"><a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}">
+                <span class="material-symbols-outlined">
+                    link
+                </span>
+                </a>
+            </td>
+            {% else %}
+            <td class="thSearch">Unknown</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+    
 </table>
 
 <script>
-	var searchInput=document.getElementById("searchbar");
-	var buttonSearch=document.getElementById("searchButton");
+    var searchInput=document.getElementById("searchbar");
+    var buttonSearch=document.getElementById("searchButton");
 	//var table=document.getElementById('table');
-	const cases=[...document.querySelectorAll('.thSearch')];
+    const cases=[...document.querySelectorAll('.thSearch')];
 
-	const filterFunc = function(event,input,listItems){
-		console.log("bonjour");
-		const search=input.value.toLowerCase();
-		console.log('search : '+search);
+    const filterFunc = function(event,input,listItems){
+        console.log("bonjour");
+        const search=input.value.toLowerCase();
+        console.log('search : '+search);
 
-		listItems.forEach(li => {
-			li.parentNode.hidden=true;
-		})
+        listItems.forEach(li => {
+            li.parentNode.hidden=true;
+        })
 
-		listItems.forEach(li => {
-			const stringFound=li.innerText.toLowerCase().indexOf(search) !== -1;
-			if(stringFound){
-				li.parentNode.hidden=false;
-			}
-		});
+        listItems.forEach(li => {
+            const stringFound=li.innerText.toLowerCase().indexOf(search) !== -1;
+            if(stringFound){
+                li.parentNode.hidden=false;
+            }
+        });
 
-	}
-</script>
-
-<script>
-// Dans votre fichier JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    var invisibleElement = document.getElementById('objects-brands');
-    
-    // Obtenir l'URL actuelle
-    var currentURL = window.location.href;
-
-    // Vérifier si l'URL correspond à celle spécifique où vous souhaitez rendre l'élément invisible
-    if (currentURL.indexOf('/home') !== -1) {
-        invisibleElement.style.visibility = 'hidden';
-    } else {
-        invisibleElement.style.visibility = 'visible';
     }
-});
-
 </script>
 
 {% endblock %}

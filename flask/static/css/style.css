@@ -32,6 +32,7 @@ background-image: radial-gradient( circle 916px at -1.1% 50.2%,  rgba(16,233,139
 	overflow-y: scroll;
 	overflow-x:visible;
 	backdrop-filter: blur(20px);
+	text-align: center;
 }
 
 #intro{

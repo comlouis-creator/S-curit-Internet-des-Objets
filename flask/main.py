@@ -49,14 +49,15 @@ def home():
         
         
         print(parameters)
-        response = requests.get(api_url,params=parameters)
+        response = requests.get(api_url,params=parameters) #FORMULATION DE LA DEMANDE
         print("code de réponse : ", response.status_code)
         if response.status_code // 100==2:
             print("request successful")
             json_data = response.json()
-            #print("réponse json : \n" ,json_data)
             data=collect_data(json_data)
             #print(data[0]['cve']['id'])
+
+            
             return render_template("home.html", title="Home", data=data)
         else:
             return "Request failed, try again"

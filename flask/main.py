@@ -24,6 +24,13 @@ def collect_data(json_data):
     return vulnerabilities
 
 
+def getCheckboxesValues(param):#vient remplir automatiquement le dictionnaire de mots clés
+    checkboxes = request.form.getlist('checkboxes')
+    print("~~~getting checkboxes values~~~")
+    print(checkboxes)
+    for value in checkboxes:
+        param['keywordSearch']+=f" {value}"
+
 @app.route("/")
 def index():
     return render_template("index.html", title="Accueil", content="Hello, World!")
@@ -46,11 +53,16 @@ def home():
             return "Request failed, try again"
     
     elif request.method=='POST':
+        
         print("POST METHOD DETECTED")
         parameters={}
+
         if request.form['severity'] != 'ALL':
             parameters['cvssV2Severity'] = request.form['severity']
         parameters['keywordSearch']=request.form['keyWords']
+
+        checkboxes=getCheckboxesValues(parameters)
+
         #PROBLÈME DANS LE FORMAT DE LA DATE
         if request.form['dateAfter'] !="":
             parameters['pubStartDate']=request.form['dateAfter']+'T00:00:00.000'if request.form['dateAfter'] != "" else ""

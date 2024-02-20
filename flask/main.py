@@ -11,8 +11,12 @@ api_url = "https://services.nvd.nist.gov/rest/json/cves/2.0/?"
 app = Flask(__name__)
 
 def collect_data(json_data):
+
     vulnerabilities=[]
+    iot = False
+
     for cve in json_data['vulnerabilities']:
+
         if 'configurations' in cve['cve']:
             for configuration in cve['cve']['configurations']:
                 if 'nodes' in configuration:
@@ -20,7 +24,12 @@ def collect_data(json_data):
                         if 'cpeMatch' in node:
                             for cpe in node['cpeMatch']:
                                 if re.search("^cpe:.+:h:.+$", cpe['criteria']) != None:
-                                    vulnerabilities.append(cve)
+                                    iot = True
+
+        if iot == True:
+            vulnerabilities.append(cve)
+            iot = False
+            
     return vulnerabilities
 
 

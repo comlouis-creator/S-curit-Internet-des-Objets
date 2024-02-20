@@ -77,9 +77,7 @@ def home():
             print("request successful")
             json_data = response.json()
             data=collect_data(json_data)
-            #print(data[0]['cve']['id'])
-
-            
+            #print(data[0]['cve']['id']) 
             return render_template("home.html", title="Home", data=data)
         else:
             return "Request failed, try again"

@@ -79,6 +79,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var invisibleElement = document.getElementById('objects-brands');
         var filterButton=document.getElementById("checkObjects");
+        var searchWord=document.getElementById('searchWord');
         // Obtenir l'URL actuelle
         var currentURL = window.location.href;
     
@@ -86,9 +87,11 @@
         if (currentURL.indexOf('/home') !== -1) {
             invisibleElement.style.visibility = 'hidden';
             filterButton.style.visibility="hidden";
+            searchWord.style.visibility="hidden"
         } else {
             invisibleElement.style.visibility = 'visible';
             filterButton.style.visibility="visible";
+            searchWord.style.visibility="visible";
         }
     });
     

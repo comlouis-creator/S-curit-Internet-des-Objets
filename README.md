@@ -15,7 +15,9 @@ Puis, ouvrir l'url `127.0.0.1:5000` dans un navigateur
 
 À partir de là, configurer les filtres comme souhaité :
 - Severity
-- Bornes de publication 
+- Bornes temporelles de publication
+
+Attention à correctement paramétrer les bornes, `dateBefore` est une limite maximale, `dateAfter` est minimale
 
 Dans le panneau coulissant, déroulable grâce à un clic sur l'icône "réglage"
 - Cochage des cases à cocher (Marques et Types d'objets), qui définissent les mots clés à rechercher 

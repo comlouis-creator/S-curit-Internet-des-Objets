@@ -8,6 +8,8 @@ ou
 ou 
 ```$ sudo pacman -S python-flask python-requests```
 
+Accéder au fichier `main.py` dans le dossier `flask/`
+
 Lancement de l'interface: 
 ```$ python main.py```
 

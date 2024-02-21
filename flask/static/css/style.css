@@ -36,11 +36,11 @@ background-image: radial-gradient( circle 916px at -1.1% 50.2%,  rgba(16,233,139
 }
 
 #intro{
-	top:30px;
+	top:0px;
 	padding:5px;
 	width: 600px;
 	text-align: center;
-	border-radius: 10px;
+	border-radius: 0px 0 10px 10px;
 	background-color: rgba(50, 50, 50, 0.4);
 	backdrop-filter: blur(20px);
 }
@@ -202,14 +202,27 @@ span
 }
 
 table, th,td{
-border: 1px solid white;
+/* border: 1px solid white; */
 text-align: center;
 }
 
 td{
 	max-width: 1000px;
 	word-wrap: break-word;
-	
+	font-size: 15px;
+	border: 1px solid white;
+	padding: 5px;
+}
+
+.redHigh{
+	background-color: rgba(240, 37, 37, 0.6);
+}
+.orangeMedium{
+	background-color: rgba(235, 136, 7, 0.6);
+}
+
+.greenLow{
+	background-color: rgba(116, 228, 12, 0.733);
 }
 
 #objects-brands{

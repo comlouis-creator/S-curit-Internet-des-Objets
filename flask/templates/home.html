@@ -24,9 +24,19 @@
             <td class="thSearch">{{ vulnerability['cve']['descriptions'][0]['value'] }}</td>
 
             {% if 'cvssMetricV2' in vulnerability['cve']['metrics'] %}
-            <td class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</td>
+            
+                {% if vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == 'HIGH' %}
+                <td class="thSearch redHigh">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</td>
+
+                {% elif vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == 'MEDIUM' %}
+                <td class="thSearch orangeMedium">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</td>
+
+                {% elif vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == "LOW" %}
+                <td class="thSearch greenLow">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</td>
+                {% endif %}
+
             {% elif 'cvssMetricV30' in vulnerability['cve']['metrics'] %}
-            <td class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV30'][0]['baseSeverity'] }}</td>
+                <td class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV30'][0]['baseSeverity'] }}</td>
             {% else %}
             <td class="thSearch">Unknown</td>
             {% endif %}

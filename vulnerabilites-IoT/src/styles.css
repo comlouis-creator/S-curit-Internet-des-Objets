@@ -1,1 +1,268 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+	transition:0.5s;
+	font-family: 'Quicksand', sans-serif;
+	/*margin: 0;*/
+	box-sizing: border-box;
+	padding: 0;
+	color:white;
+}
+
+body{
+background-color: #FBDA61;
+background-image: radial-gradient( circle 916px at -1.1% 50.2%,  rgba(16,233,139,1) 13%, rgba(0,176,228,1) 100.2% );
+
+}
+ 
+.center-x{
+	position: absolute;
+	transform: translate(-50%,0%);
+	left: 50%;
+	/* display: flex;
+	justify-content: center;
+	flex-direction: column; */
+}
+
+#data{
+	bottom: 30px;
+	height: 600px;
+	width: 1400px;
+	padding: 20px;
+	border-radius: 15px 0 15px 15px;
+	background-color: rgba(50, 50, 50, 0.4);
+	overflow-y: scroll;
+	overflow-x:visible;
+	backdrop-filter: blur(20px);
+	text-align: center;
+}
+
+#intro{
+	top:0px;
+	padding:5px;
+	width: 600px;
+	text-align: center;
+	border-radius: 0px 0 10px 10px;
+	background-color: rgba(50, 50, 50, 0.4);
+	backdrop-filter: blur(20px);
+}
+
+#filter-div{
+	position: absolute;
+	left: -400px;
+	width: 500px;
+	top: 10%;
+	background-color: rgba(50, 50, 50, 0.4);
+	backdrop-filter: blur(20px);
+	z-index: 2;
+	padding: 20px;
+	border-radius: 15px;
+	font-size: 15px;
+}
+
+#filter-button{
+	float: right;
+	right: 0;
+	top:0;
+	align-items: end;
+	cursor: pointer;
+	padding:15px;
+	border-radius: 50px;
+}
+
+#filter-button:hover{
+	background: rgba(255, 255, 255, 0.7);
+}
+
+#filter-div.active{
+	left: 60px;
+}
+
+select{
+	font-size: 20px;
+	text-decoration: none;
+	outline: none;
+	border: 1px solid rgba(255, 255, 255,0.8);
+	background-color: transparent;
+	padding: 5px;
+	border-radius: 10px;	 
+}
+
+input{
+	font-size: 12px;
+	text-decoration: none;
+	outline: none;
+	background: rgba(100, 100, 100, 0.6);
+	background-color: transparent;
+	border:1px solid rgba(255, 255, 255,0.8);
+	border-radius: 10px;
+	padding: 5px;
+	font-size: 15px;
+}
+
+::placeholder{
+	color: rgb(255, 255, 255);
+}
+
+.options{
+	display: flex;
+	/*background: rgba(200, 200, 200, 0.3);*/
+	justify-content: space-between;
+	padding: 5px;
+}
+#submit-div
+{	
+	padding: 10px;
+	justify-content: center;
+}
+input[type='submit']{
+	padding: 10px;
+	font-size: 2em;
+	border: none;
+	cursor:pointer;
+}
+input[type='submit']:hover{
+	background: rgba(255, 255, 255,0.5);
+}
+
+form{
+	width: 350px;
+}
+
+.warning{
+	padding: 5px;
+	background-color: rgba(240, 37, 37, 0.6);
+	border-radius: 13px;
+	font-size: 14px;
+	width: 360px;
+	position: relative;
+}
+span
+{
+    padding: 10px;
+    border-radius: 200px;
+}
+
+.material-symbols-outlined:hover
+{
+    background-color: rgba(255,255,255,0.6);
+}
+
+#search-div{
+	vertical-align: center;
+	/*float: inline-end;*/
+	padding: 10px;
+	background-color: rgba(50, 50,50, 0.4);
+	border-radius: 20px 20px 0px 0;
+	position: absolute;
+	z-index: 4;
+	right: 254px;
+	top: 210px;
+}
+
+#search-div input{
+	padding: 15px;
+	font-size: 15px;
+}
+
+.material-symbols-outlined{
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+#reset{
+	font-size: 2em;
+	margin-left:50px;
+	cursor: pointer;
+}
+#reset:hover{
+	background: rgba(255, 255, 255, 0.6);
+}
+
+#filter-container{
+	/* height: 300px; 
+	display: flex;
+	align-content: flex-end;
+	flex-direction: row; */
+}
+
+#filter-1{
+	/* display: block; */
+}
+
+.glass{
+	background-color: rgba(50, 50, 50, 0.4);
+	backdrop-filter: blur(20px);
+}
+
+#filter-2{
+	position: absolute;
+	bottom: -50%;
+	left: 80%;
+	padding: 40px;
+	border-radius: 30px ;
+}
+
+table, th,td{
+/* border: 1px solid white; */
+text-align: center;
+}
+
+td{
+	max-width: 1000px;
+	word-wrap: break-word;
+	font-size: 15px;
+	border: 1px solid white;
+	padding: 5px;
+}
+
+.redHigh{
+	background-color: rgba(240, 37, 37, 0.6);
+}
+.orangeMedium{
+	background-color: rgba(235, 136, 7, 0.6);
+}
+
+.greenLow{
+	background-color: rgba(116, 228, 12, 0.733);
+}
+
+#objects-brands{
+	justify-content: space-between;
+}
+
+.flex{
+	display: flex;
+	gap: 10px;
+}
+
+#objects-brands input[type="checkbox"]{
+	display: none;
+	cursor: pointer;
+}
+
+#objects-brands label h2{
+	padding: 5px;
+	margin: 0px;
+}
+
+#objects-brands label:before{
+	content: '';
+	display: block;
+	cursor: pointer;
+	transform: translate(0,70px);
+	width: inherit;
+	z-index: 5;
+	height: 40px;
+	background: transparent;
+	padding: 20px;
+	/* border-radius:20px; */
+	border: 1px solid white;
+}
+
+#objects-brands input:checked + label:before{
+	/* display: none; */
+	border: 1px solid transparent;
+	background: rgba(255, 255, 255, 0.5);
+	/* transform:translate(0,40px) ; */
+	z-index: 2;
+}

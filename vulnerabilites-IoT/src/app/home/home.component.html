@@ -1,0 +1,18 @@
+<div id="data" class="center-x">
+    <table>
+      <thead>
+        <tr>
+          <th>CVE</th>
+          <th>Description</th>
+          <!-- Autres en-têtes de colonnes -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vulnerability of vulnerabilities">
+          <td>{{ vulnerability.cve.id }}</td>
+          <td>{{ vulnerability.cve.descriptions[0].value }}</td>
+          <!-- Autres données à afficher -->
+        </tr>
+      </tbody>
+    </table>
+  </div>

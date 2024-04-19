@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet IoT</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="columns">
+            <div class="column col-8 col-mx-auto">
+                <h1 class="text-center">Projet IoT groupe 1</h1>
+                <h2 class="text-center">Alexandre MEVEL, Louis MORLOT, Vincent MILLOUR, Bilal SAFI</h2>
+                <p class="text-center">Vulnerability list</p>
+
+                <!-- Filter Options -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title h5">Filter Options</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Severity</label>
+                            <select class="form-select" v-model="severity">
+                                <option value="ALL">ALL</option>
+                                <option value="LOW">LOW</option>
+                                <option value="MEDIUM">MEDIUM</option>
+                                <option value="HIGH">HIGH</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Published Before</label>
+                            <input type="date" class="form-input" v-model="dateBefore">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Published After</label>
+                            <input type="date" class="form-input" v-model="dateAfter">
+                        </div>
+                        <div class="form-group text-error" v-if="showWarning">
+                            <span class="material-icons">warning</span>
+                            Do not exceed 120 days between the two limit dates
+                            <span class="material-icons">warning</span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" @click="applyFilters">Confirm</button>
+                            <button class="btn btn-link" @click="resetFilters">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="input-group mt-2">
+                    <input class="form-input" type="text" placeholder="Filter results" v-model="searchQuery">
+                    <button class="btn input-group-btn" @click="search">Search</button>
+                </div>
+
+                <!-- Data Table -->
+                <table class="table table-striped mt-2" v-if="filteredData.length > 0">
+                    <thead>
+                        <tr>
+                            <th>CVE</th>
+                            <th>Description</th>
+                            <th>Severity</th>
+                            <th>Date</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="vulnerability in filteredData">
+                            <td>{{ vulnerability.cve.id }}</td>
+                            <td>{{ vulnerability.cve.descriptions[0].value }}</td>
+                            <td>{{ getSeverity(vulnerability) }}</td>
+                            <td>{{ vulnerability.cve.published }}</td>
+                            <td v-if="vulnerability.cve.references.length > 0">
+                                <a :href="vulnerability.cve.references[0].url" target="_blank">
+                                    <span class="material-icons">link</span>
+                                </a>
+                            </td>
+                            <td v-else>Unknown</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div v-else class="empty">
+                    No data available
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                severity: 'ALL',
+                dateBefore: '',
+                dateAfter: '',
+                searchQuery: '',
+                showWarning: false,
+                data: [], // Your vulnerability data
+            },
+            computed: {
+                filteredData() {
+                    let filtered = this.data.filter(v => {
+                        // Apply filters
+                        return (this.severity === 'ALL' || v.cve.metrics.cvssMetricV2[0].baseSeverity === this.severity) &&
+                            (!this.dateBefore || v.cve.published >= this.dateBefore) &&
+                            (!this.dateAfter || v.cve.published <= this.dateAfter);
+                    });
+
+                    // Show warning if necessary
+                    const dateDiff = Math.abs(new Date(this.dateBefore) - new Date(this.dateAfter)) / (1000 * 60 * 60 * 24);
+                    this.showWarning = dateDiff > 120;
+
+                    // Filter by search query
+                    if (this.searchQuery) {
+                        filtered = filtered.filter(v => {
+                            return v.cve.id.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                                v.cve.descriptions[0].value.toLowerCase().includes(this.searchQuery.toLowerCase());
+                        });
+                    }
+
+                    return filtered;
+                }
+            },
+            methods: {
+                applyFilters() {
+                    // Apply filters
+                },
+                resetFilters() {
+                    // Reset filters
+                },
+                search() {
+                    // Perform search
+                },
+                getSeverity(vulnerability) {
+                    if ('cvssMetricV2' in vulnerability.cve.metrics) {
+                        switch (vulnerability.cve.metrics.cvssMetricV2[0].baseSeverity) {
+                            case 'HIGH':
+                                return 'redHigh';
+                            case 'MEDIUM':
+                                return 'orangeMedium';
+                            case 'LOW':
+                                return 'greenLow';
+                        }
+                    } else if ('cvssMetricV30' in vulnerability.cve.metrics) {
+                        return vulnerability.cve.metrics.cvssMetricV30[0].baseSeverity;
+                    } else {
+                        return 'Unknown';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

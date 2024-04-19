@@ -58,6 +58,11 @@ background-image: radial-gradient( circle 916px at -1.1% 50.2%,  rgba(16,233,139
 	padding: 20px;
 	border-radius: 15px;
 	font-size: 15px;
+	transition: transform 0.3s ease;
+}
+
+.filterdivActive {
+	transform: translateX(100%); /* Applique le décalage sur la droite */
 }
 
 #filter-button{

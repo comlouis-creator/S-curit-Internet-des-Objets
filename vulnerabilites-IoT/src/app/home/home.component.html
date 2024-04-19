@@ -1,10 +1,17 @@
 <div id="data" class="center-x">
-    <table>
+
+  <a href="/"><span class="material-symbols-outlined">
+    arrow_back
+    </span></a>
+
+  <table style="border: 1px solid white;" cellspacing="0"> 
       <thead>
         <tr>
           <th>CVE</th>
           <th>Description</th>
-          <!-- Autres en-têtes de colonnes -->
+          <th>Severity</th>
+          <th>Date</th>
+          <th>Link</th>
         </tr>
       </thead>
       <tbody>
@@ -12,7 +19,13 @@
           <td>{{ vulnerability.cve.id }}</td>
           <td>{{ vulnerability.cve.descriptions[0].value }}</td>
           <!-- Autres données à afficher -->
+          <td>{{ vulnerability.cve.CVE_data_meta.ID }}</td>
+          <td>{{ vulnerability.cve.description.description_data[0].value }}</td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div id="data" class="center-x">
+    <app-cve-table [vulnerabilities]="vulnerabilities"></app-cve-table>
   </div>

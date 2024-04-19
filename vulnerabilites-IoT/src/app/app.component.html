@@ -6,19 +6,21 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Projet IoT</title>
 
-	<link rel="stylesheet" type="text/css" href="/../static/css/style.css">
+
+	<!-- <meta charset="utf-8"> -->
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	<!-- <title>Projet IoT</title> -->
+
+	<!-- <link rel="stylesheet" type="text/css" href="/../static/css/style.css"> -->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 	<style>
   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 	</style>
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-
-</head>
+  
 
 <div class="center-x" id="intro">
   <h1>Projet IoT groupe 1</h1>
@@ -26,9 +28,9 @@
   <p>Vulnerability list</p>
 </div>
 
-<div id="filter-div">
+<div id="filter-div" [ngClass]="{ 'filterdivActive': filterdivActive }">
   <!-- Utilisation de l'icône de filtrage -->
-  <span class="material-symbols-outlined" id="filter-button">
+  <span class="material-symbols-outlined" id="filter-button" (click)="toggleFilterDiv()">
     tune
   </span>
   <form method="post" action="/home">
@@ -63,9 +65,6 @@
                       warning
                   </span>
               </h3>
-              <div class="options">
-                  <h2>Word Search</h2><input type="text" name="keyWords" placeholder="Search">
-              </div>
 
               <div id="submit-div">
                   <input type="submit" value="Confirm">

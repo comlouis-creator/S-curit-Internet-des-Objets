@@ -19,12 +19,12 @@
 		<div class="center-x" id="intro">
 			<h1>Projet IoT groupe 1</h1>
 	   		<h2>Alexandre MEVEL, Louis MORLOT, Vincent MILLOUR, Bilal SAFI</h2>
-	    	<p>Vulnerability list</p>
+	    	<h3>Vulnerability list</h3>
 		</div>
 	
-	<div id="filter-div" class="flex" style="justify-content: space-evenly;background-color: #fff">
+	<div id="filter-div" style="justify-content: space-evenly;background-color: #fff;">
 		
-		<div style="display: flex;justify-content: space-evenly;">
+		<div style="display: flex;justify-content: space-evenly;align-items: center">
 			<div id="filter-container">
 				<h1>Filter Options</h1>
 						<span class="material-symbols-outlined" id="filter-button">tune</span>
@@ -57,6 +57,11 @@
 						</h3>
 				</div>
 			</div>
+
+		<div id="submit-div" style="padding: 30px;">
+		<!-- <input type="submit" value="Confirm"> -->
+		<input type="reset" value="Reset" id="reset">
+		</div>
 
 			<div id="objects-brands" class="flex" style="flex-direction: row;">
 			
@@ -97,11 +102,8 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
-		<div id="submit-div">
-			<input type="submit" value="Confirm">
-			<input type="reset" value="Reset" id="reset">
-		</div>
 <script>
 	let button=document.getElementById("filter-button");
 	let div=document.getElementById("filter-div");
@@ -110,35 +112,35 @@
 	})
 
 </script>
+
+<div style="width:100%;">
+<div class="options" id="searchWord" style="">
+	<h1>Word Search</h1><input type="text" name="keyWords" placeholder="Search">
+	<input type="submit" id="submitButton" value="Search" style="margin: 15px;">
+</div>
+</div>
+
 	<div id="data" class="center-x">
 		<!-- <div style="width: 100%;height: 100px;background: transparent;"></div> -->
 	 {% block content %}{% endblock %}
-			
-
 		
-			<script>
-			document.getElementById('checkObjects').addEventListener('click', function() {
-			let objectCategories = [];
-    		const objectLabels = document.querySelectorAll('#objects-brands label');
+		<script>
+		document.getElementById('checkObjects').addEventListener('click', function() {
+		let objectCategories = [];
+		const objectLabels = document.querySelectorAll('#objects-brands label');
+		objectLabels.forEach(label => {
+    	let checkbox = document.querySelector('#' + label.htmlFor);
+    	if (checkbox && checkbox.checked) {
+        objectCategories.push(label.innerText.trim());
+    		}
+		});
 
-    		objectLabels.forEach(label => {
-        	let checkbox = document.querySelector('#' + label.htmlFor);
-        	if (checkbox && checkbox.checked) {
-            objectCategories.push(label.innerText.trim());
-        		}
-    		});
-
-    		console.log(objectCategories);
-			});
+		console.log(objectCategories);
+		});
 
 
-			</script>
-
-<div class="options" id="searchWord" style="justify-content: center; margin: 100px 10px 10px 10px;" >
-	<h2>Word Search</h2><input type="text" name="keyWords" placeholder="Search">
-</div>
-
-			<input type="submit" id="checkObjects" value="Search" style="margin: 15px;">
+		</script>
+	
 		
 	</div>
 	</form>

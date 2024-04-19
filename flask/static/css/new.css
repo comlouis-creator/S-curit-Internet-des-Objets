@@ -6,6 +6,14 @@
     font-size: 12px;
 }
 
+*:hover{
+    transition: 0.5s;
+}
+
+*:not(:hover){
+    transition: 0.5s;
+}
+
 body {
     font-family: 'Quicksand', sans-serif;
     background-color: #f2f2f2;
@@ -55,7 +63,7 @@ p {
     border-radius: 5px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 20px 0px 20px 80px;
+    /*margin: 20px 0px 20px 80px;*/
     padding: 20px;
 }
 
@@ -73,11 +81,16 @@ p {
 }
 
 #search-div {
-    display: flex;
+    margin:15px 0 15px 0 ;
+    vertical-align: middle;
     align-items: center;
     margin-bottom: 20px;
 }
 
+/*#search-div input{
+padding: 150px;
+}
+*/
 #searchbar {
     flex: 1;
     padding: 10px;
@@ -113,7 +126,7 @@ table th, table td {
 
 /* Objects and Brands */
 #objects-brands {
-    margin: 20px 0px 20px 80px;
+    /*margin: 20px 0px 20px 80px;*/
     border-radius: 5px;
     width: 450px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -146,19 +159,60 @@ table th, table td {
 
 /* Word Search */
 #searchWord {
+    font-size: 15px;
     text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    margin:auto;
+    width: 30%;
 }
 
-#checkObjects {
+#searchWord input{
+    padding: 10px;
+    font-size: 15px;
+}
+#submitButton {
     cursor: pointer;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
+    padding: 15px;
+    /*background-color: #28a745;*/
+    color: #000;
     border: none;
     border-radius: 5px;
     margin-top: 20px;
+background-image: radial-gradient( circle 780.6px at 10% 20%,  rgba(133,255,189,1) 0%, rgba(255,251,125,1) 90.7% );
 }
 
-#checkObjects:hover {
-    background-color: #218838;
+#submitButton:hover {
+    background-image: none;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(133,255,189,1);
 }
+
+#reset{
+    color: white;
+    font-size: 20px;
+    border: none;
+    font-weight: bold;
+    padding: 20px;
+    outline: none;
+    text-decoration: none;
+    border-radius: 5px;
+
+    border-width: 4px;
+/*    border-style: solid;
+    border-color: transparent;
+    background-color: #4158D0;
+    /*border:3px solid transparent;*/
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+}
+
+#reset:hover{
+    background-color: white;
+    background-image: none;
+    box-shadow: 0px 0px 30px #77777756;
+
+   color:#C850C0;
+}
+

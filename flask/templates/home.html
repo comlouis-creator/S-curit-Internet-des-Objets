@@ -1,11 +1,12 @@
 {% extends 'index.html' %}
 {% block content %}
 
-<a href="/"><span class="material-symbols-outlined">
-    arrow_back
-    </span></a>
+
 
 <div id="search-div">
+    <a href="/"><span class="material-symbols-outlined">
+    arrow_back
+    </span></a>
     <span class="material-symbols-outlined" id="searchButton" onclick="filterFunc('input',searchInput,cases)">search</span>
     <input type="text" placeholder='Filter results' id="searchbar">
 </div>
@@ -89,7 +90,7 @@
     }
 </script>
 
-<script>
+<!-- <script>
     // Dans votre fichier JavaScript
     document.addEventListener('DOMContentLoaded', function() {
         var invisibleElement = document.getElementById('objects-brands');
@@ -110,6 +111,6 @@
         }
     });
     
-    </script>
+</script> -->
 
 {% endblock %}

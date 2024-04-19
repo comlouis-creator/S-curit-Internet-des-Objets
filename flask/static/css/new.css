@@ -3,6 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-size: 12px;
 }
 
 body {
@@ -46,12 +47,15 @@ p {
 /* Filter Options */
 #filter-div {
     margin-bottom: 30px;
+    background-color: #fff;
+    /**/
 }
 
 #filter-container {
-    background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px 0px 20px 80px;
     padding: 20px;
 }
 
@@ -109,11 +113,16 @@ table th, table td {
 
 /* Objects and Brands */
 #objects-brands {
-    margin-top: 30px;
+    margin: 20px 0px 20px 80px;
+    border-radius: 5px;
+    width: 450px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
 }
 
 #objects, #brands {
     width: 50%;
+    /*flex-direction:column;*/
 }
 
 #objects h1, #brands h1 {
@@ -123,11 +132,13 @@ table th, table td {
 
 .flex {
     display: flex;
-    flex-direction:column ;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 10px;
+    gap: 0px 10px;
+    /*align-items: center;*/
+    margin-bottom: 0px;
 }
+
+.column
+{flex-direction: column;}
 
 .checkbox-label {
     margin-left: 5px;

@@ -15,15 +15,16 @@
 </head>
 
 <body>
-	<div class="center-x" id="intro">
-		<h1>Projet IoT groupe 1</h1>
-   		<h2>Alexandre MEVEL, Louis MORLOT, Vincent MILLOUR, Bilal SAFI</h2>
-    	<p>Vulnerability list</p>
-	</div>
+	<form method="post" action="/home" style="with:100%;" >
+		<div class="center-x" id="intro">
+			<h1>Projet IoT groupe 1</h1>
+	   		<h2>Alexandre MEVEL, Louis MORLOT, Vincent MILLOUR, Bilal SAFI</h2>
+	    	<p>Vulnerability list</p>
+		</div>
 	
-	<div id="filter-div">
-
-		<form method="post" action="/home">
+	<div id="filter-div" class="flex" style="justify-content: space-evenly;background-color: #fff">
+		
+		<div style="display: flex;justify-content: space-evenly;">
 			<div id="filter-container">
 				<h1>Filter Options</h1>
 						<span class="material-symbols-outlined" id="filter-button">tune</span>
@@ -35,7 +36,6 @@
 								<option value="LOW">LOW</option>
 								<option value="MEDIUM">MEDIUM</option>
 								<option value="HIGH">HIGH</option>
-								<!--<option value="CRITICAL">CRITICAL</option>-->
 							</select>
 					</div>
 
@@ -55,26 +55,53 @@
 								warning
 							</span>
 						</h3>
+				</div>
+			</div>
 
-					<div id="submit-div">
-						<input type="submit" value="Confirm">
-						<input type="reset" value="Reset" id="reset">
+			<div id="objects-brands" class="flex" style="flex-direction: row;">
+			
+				<div id="objects" style="width: 600px;">
+					<h1>Category of objects</h1>
+					<div class="flex  column" style="flex-wrap: wrap;">
+						<div class="flex"><input type="checkbox" id="camera" name="checkboxes" value="camera"><label for="camera"><h2>Camera</h2></label></div>
+						<div class="flex"><input type="checkbox" id="headphones" name="checkboxes" value="headphones"><label for="headphones"><h2>Headphones</h2></label></div>
+						<div class="flex"><input type="checkbox" id="smartwatches" name="checkboxes" value="smartwatch"><label for="smartwatches"><h2>SmartWatches</h2></label></div>
+						<div class="flex"><input type="checkbox" id="tablets" name="checkboxes" value="tablet"><label for="tablets"><h2>Tablets</h2></label></div>
+						<div class="flex"><input type="checkbox" id="fridges" name="checkboxes" value="fridge"><label for="fridges"><h2>Fridges</h2></label></div>
+						<div class="flex"><input type="checkbox" id="gps" name="checkboxes" value="gps"><label for="gps"><h2>GPS</h2></label></div>
+						<div class="flex"><input type="checkbox" id="cars" name="checkboxes" value="car"><label for="cars"><h2>Cars</h2></label></div>
+						<div class="flex"><input type="checkbox" id="rfid" name="checkboxes" value="rfid"><label for="rfid"><h2>RFID</h2></label></div>
+						<div class="flex"><input type="checkbox" id="microphones" name="checkboxes" value="microphone"><label for="microphones"><h2>Microphones</h2></label></div>
+						<div class="flex"><input type="checkbox" id="wifi" name="checkboxes" value="wifi"><label for="wifi"><h2>Wifi</h2></label></div>
+						<div class="flex"><input type="checkbox" id="arduino" name="checkboxes" value="Arduino"><label for="arduino" ><h2>Arduino</h2></label></div>
+						<div class="flex"><input type="checkbox" id="sensor" name="checkboxes" value="sensor"><label for="sensor" ><h2>Sensor</h2></label></div>
 					</div>
 				</div>
-
-				<!-- <div id="filter-2" class="glass">
-					<div>
-						<h2>Brands</h2>
-						<select>
-							<option></option>
-						</select>
+				
+				<div id="brands" style="width: 600px;">
+					<h1 style=>Brands</h1>
+					<div class="flex  column" style="flex-wrap: wrap;">
+						<div class="flex"><input type="checkbox" id="Panasonic" name="checkboxes" value="panasonic"><label for="Panasonic"><h2>Panasonic</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Apple" name="checkboxes" value="apple"><label for="Apple"><h2>Apple</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Samsung" name="checkboxes" value="samsung"><label for="Samsung"><h2>Samsung</h2></label></div>
+						<div class="flex"><input type="checkbox" id="HP" name="checkboxes" value="hp"><label for="HP"><h2>HP</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Androïd" name="checkboxes" value="android"><label for="Androïd"><h2>Androïd</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Huaweï" name="checkboxes" value="huawei"><label for="Huaweï"><h2>Huaweï</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Logitech" name="checkboxes" value="logitech"><label for="Logitech"><h2>Logitech</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Xiaomi" name="checkboxes" value="xiaomi"><label for="Xiaomi"><h2>Xiaomi</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Google" name="checkboxes" value="google"><label for="Google"><h2>Google</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Realme" name="checkboxes" value="realme"><label for="Realme"><h2>Realme</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Sony" name="checkboxes" value="sony"><label for="Sony"><h2>Sony</h2></label></div>
+						
 					</div>
-				</div> -->
-
-
+				</div>
 			</div>
-		
+		</div>
 	</div>
+		<div id="submit-div">
+			<input type="submit" value="Confirm">
+			<input type="reset" value="Reset" id="reset">
+		</div>
 <script>
 	let button=document.getElementById("filter-button");
 	let div=document.getElementById("filter-div");
@@ -83,54 +110,11 @@
 	})
 
 </script>
-
-	<div id="search-div">
-				<span class="material-symbols-outlined" id="searchButton" onclick="filterFunc('input',searchInput,cases)">search</span>
-				<input type="text" placeholder='Filter results' id="searchbar">
-	</div>
-
 	<div id="data" class="center-x">
 		<!-- <div style="width: 100%;height: 100px;background: transparent;"></div> -->
 	 {% block content %}{% endblock %}
 			
-	 	<div id="objects-brands" class="flex" style="flex-direction: row;">
-			
-			<div id="objects" style="width: 600px;">
-				<h1>Category of objects</h1>
-				<div class="flex" style="flex-wrap: wrap;">
-					<div class="flex"><input type="checkbox" id="camera" name="checkboxes" value="camera"><label for="camera"><h2>Camera</h2></label></div>
-					<div class="flex"><input type="checkbox" id="headphones" name="checkboxes" value="headphones"><label for="headphones"><h2>Headphones</h2></label></div>
-					<div class="flex"><input type="checkbox" id="smartwatches" name="checkboxes" value="smartwatch"><label for="smartwatches"><h2>SmartWatches</h2></label></div>
-					<div class="flex"><input type="checkbox" id="tablets" name="checkboxes" value="tablet"><label for="tablets"><h2>Tablets</h2></label></div>
-					<div class="flex"><input type="checkbox" id="fridges" name="checkboxes" value="fridge"><label for="fridges"><h2>Fridges</h2></label></div>
-					<div class="flex"><input type="checkbox" id="gps" name="checkboxes" value="gps"><label for="gps"><h2>GPS</h2></label></div>
-					<div class="flex"><input type="checkbox" id="cars" name="checkboxes" value="car"><label for="cars"><h2>Cars</h2></label></div>
-					<div class="flex"><input type="checkbox" id="rfid" name="checkboxes" value="rfid"><label for="rfid"><h2>RFID</h2></label></div>
-					<div class="flex"><input type="checkbox" id="microphones" name="checkboxes" value="microphone"><label for="microphones"><h2>Microphones</h2></label></div>
-					<div class="flex"><input type="checkbox" id="wifi" name="checkboxes" value="wifi"><label for="wifi"><h2>Wifi</h2></label></div>
-					<div class="flex"><input type="checkbox" id="arduino" name="checkboxes" value="Arduino"><label for="arduino" ><h2>Arduino</h2></label></div>
-					<div class="flex"><input type="checkbox" id="sensor" name="checkboxes" value="sensor"><label for="sensor" ><h2>Sensor</h2></label></div>
-				</div>
-			</div>
-			
-			<div id="brands" style="width: 600px;">
-				<h1 style=>Brands</h1>
-				<div class="flex" style="flex-wrap: wrap;">
-					<div class="flex"><input type="checkbox" id="Panasonic" name="checkboxes" value="panasonic"><label for="Panasonic"><h2>Panasonic</h2></label></div>
-					<div class="flex"><input type="checkbox" id="Apple" name="checkboxes" value="apple"><label for="Apple"><h2>Apple</h2></label></div>
-					<div class="flex"><input type="checkbox" id="Samsung" name="checkboxes" value="samsung"><label for="Samsung"><h2>Samsung</h2></label></div>
-					<div class="flex"><input type="checkbox" id="HP" name="checkboxes" value="hp"><label for="HP"><h2>HP</h2></label></div>
-					<div class="flex"><input type="checkbox" id="Androïd" name="checkboxes" value="android"><label for="Androïd"><h2>Androïd</h2></label></div>
-					<div class="flex"><input type="checkbox" id="Huaweï" name="checkboxes" value="huawei"><label for="Huaweï"><h2>Huaweï</h2></label></div>
-					<div class="flex"><input type="checkbox" id="Logitech" name="checkboxes" value="logitech"><label for="Logitech"><h2>Logitech</h2></label></div>
-					<div class="flex"><input type="checkbox" id="Xiaomi" name="checkboxes" value="xiaomi"><label for="Xiaomi"><h2>Xiaomi</h2></label></div>
-					<div class="flex"><input type="checkbox" id="Google" name="checkboxes" value="google"><label for="Google"><h2>Google</h2></label></div>
-					<div class="flex"><input type="checkbox" id="Realme" name="checkboxes" value="realme"><label for="Realme"><h2>Realme</h2></label></div>
-					<div class="flex"><input type="checkbox" id="Sony" name="checkboxes" value="sony"><label for="Sony"><h2>Sony</h2></label></div>
-					
-				</div>
-			</div>
-		</div>
+
 		
 			<script>
 			document.getElementById('checkObjects').addEventListener('click', function() {
@@ -158,6 +142,8 @@
 		
 	</div>
 	</form>
+
+
 	
 </body>
 </html>

@@ -60,8 +60,7 @@ p {
 }
 
 #filter-container {
-    border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     /*margin: 20px 0px 20px 80px;*/
     padding: 20px;
@@ -126,8 +125,8 @@ table th, table td {
 
 /* Objects and Brands */
 #objects-brands {
-    /*margin: 20px 0px 20px 80px;*/
-    border-radius: 5px;
+    margin: 20px 0px 20px 0px;
+    border-radius: 15px;
     width: 450px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -214,5 +213,10 @@ background-image: radial-gradient( circle 780.6px at 10% 20%,  rgba(133,255,189,
     box-shadow: 0px 0px 30px #77777756;
 
    color:#C850C0;
+}
+
+.material-symbols-outlined{
+    transform: translate(0,7px);
+    cursor: pointer;
 }
 

@@ -1,8 +1,6 @@
 {% extends 'index.html' %}
 {% block content %}
 
-
-
 <div id="search-div">
     <a href="/"><span class="material-symbols-outlined">
     arrow_back
@@ -11,7 +9,63 @@
     <input type="text" placeholder='Filter results' id="searchbar">
 </div>
 
-<table style="border: 1px solid white;" cellspacing="0"> 
+
+<div id="results">
+{% for vulnerability in data %}
+
+<div class="cve-div">
+    <h2>{{ vulnerability['cve']['id'] }}</h2>
+    {% if 'cvssMetricV2' in vulnerability['cve']['metrics'] %}
+        {% if vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == 'HIGH' %}
+        <h2 class="thSearch redHigh">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}
+        </h2>
+
+        {% elif vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == 'MEDIUM' %}
+        <h2 class="thSearch orangeMedium">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}
+        </h2>
+
+        {% elif vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == "LOW" %}
+        <h2 class="thSearch greenLow">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}
+        </h2>
+        {% endif %}
+        <h2>{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['cvssData']['baseScore'] }}</h2>
+    {% endif %}
+
+    {% if 'cvssMetricV30' in vulnerability['cve']['metrics'] %}
+        <h2 class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV30'][0]['baseSeverity'] }}</h2>
+    {% endif %}
+    
+    <h3 class=""><span class="material-symbols-outlined eyeInfo" onclick="display('inspect{{ vulnerability['cve']['id'] }}')">visibility</span> {{ vulnerability['cve']['published'] }} 
+    
+    {% if vulnerability['cve']['references']|length > 0 %}
+    <a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}">
+        <span class="material-symbols-outlined">
+            link
+        </span>
+        </a>
+    {% endif %}
+    </h3>
+
+<div class="inspect" id="inspect{{ vulnerability['cve']['id'] }}">
+    <span class="material-symbols-outlined" onclick="display('inspect{{ vulnerability['cve']['id'] }}')" style="color: red;">close</span>
+</div>
+
+</div>
+
+{% endfor %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+    display=function(element){
+        console.log("ça clique")
+        e=document.getElementById(element)
+        e.classList.toggle("displayed")
+    }
+</script>
+
+<!-- <table style="border: 1px solid white;" cellspacing="0"> 
     <thead>
         <tr>
             <th>CVE</th>
@@ -63,7 +117,7 @@
         {% endfor %}
     </tbody>
     
-</table>
+</table> -->
 
 <script>
     var searchInput=document.getElementById("searchbar");

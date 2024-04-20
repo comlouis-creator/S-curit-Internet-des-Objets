@@ -8,7 +8,7 @@ import { CveTableComponent } from './cve-table/cve-table.component';
 //import { HouseModule } from './Modules/house/house.module';
 
 @NgModule({
-  declarations:[CveTableComponent],
+  declarations:[],
   imports: [
     MatIconModule,HttpClientModule
   ],

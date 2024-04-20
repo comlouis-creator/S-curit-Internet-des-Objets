@@ -9,6 +9,11 @@
 	<link rel="stylesheet" type="text/css" href="/../static/css/home.css">
 	<style>
   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+  body {
+		font-family: 'Quicksand', sans-serif; /* Utilisation de la police Quicksand */
+		font-size: 16px; /* Taille de police par défaut */
+	}
 	</style>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -61,7 +66,43 @@
 
 		<div id="submit-div" style="padding: 30px;">
 		<!-- <input type="submit" value="Confirm"> -->
-		<input type="reset" value="Reset" id="reset">
+		<style>
+			#reset-container {
+				position: relative;
+				display: inline-block;
+			}
+		
+			#reset {
+				position: absolute;
+				opacity: 0;
+				width: 100%;
+				height: 100%;
+				cursor: pointer;
+				z-index: 1;
+			}
+		
+			#reset-text {
+				color: white;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 2;
+				cursor: pointer;
+				font-size: 20px;
+				padding: 20px;
+				border-radius: 5px;
+    			border-width: 4px;
+				background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+			}
+		</style>
+		
+		<div id="reset-container">
+			<input type="reset" value="" id="reset">
+			<h2 id="reset-text" onclick="document.getElementById('reset').click()">Reset</h2>
+		</div>		
+		
+		
 		</div>
 
 			<div id="objects-brands" class="flex" style="flex-direction: row;">
@@ -102,6 +143,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 
 	</div>
@@ -146,7 +188,56 @@
 	</div>
 	</form>
 
-
+	<style>
+		#custom_translation_overlay {
+			background-color: #f2f2f2;
+    		color: #333;
+			width: 169px; /* ajustez la largeur selon vos besoins */
+			height: 18px; /* ajustez la hauteur selon vos besoins */
+		}
+	</style>
 	
+	<div id="custom_translation_overlay"></div>
+	
+
+<div id="google_translate_element"></div>
+<div id="custom_translation_elements">
+    <div id="custom_translation_overlay"></div>
+</div>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+    );
+}
+</script>
+
+<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<style>
+/* Masquer le texte "Fourni par" */
+span.goog-logo {
+    display: none;
+}
+
+/* Masquer l'icône de Google Traduction */
+span.jfk-bubble-source {
+    display: none;
+}
+
+/* Positionner l'overlay juste au-dessus du texte "Fourni par Google Traduction" */
+#custom_translation_overlay {
+    position: relative;
+    margin-top: -20px; /* Ajustez la valeur pour positionner correctement l'overlay */
+    z-index: 999; /* Assure que l'élément est au-dessus du texte */
+}
+body > .skiptranslate {
+    display: none;
+}
+</style>
+	
+
 </body>
 </html>

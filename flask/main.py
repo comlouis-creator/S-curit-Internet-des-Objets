@@ -1,14 +1,17 @@
 # PROJET INTERNET DES OBJETS
+import os
 import requests  # pour faire des requêtes à nist
 import json
 import re
 from flask import *
+from flask_babel import Babel
 
 #api_url2 = "https://services.nvd.nist.gov/rest/json/cves/2.0?cvssV3Severity=HIGH"  # url de l'api nist prenant une sévérité basse
 api_url = "https://services.nvd.nist.gov/rest/json/cves/2.0/?"
 #params = {"param1": "valeur1", "param2": "valeur2"}
 
 app = Flask(__name__)
+babel = Babel(app)
 
 def collect_data(json_data):
 
@@ -40,9 +43,22 @@ def getCheckboxesValues(param):#vient remplir automatiquement le dictionnaire de
     for value in checkboxes:
         param['keywordSearch']+=f" {value}"
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template("index.html", title="Accueil", content="Hello, World!")
+    if request.method == 'POST':
+        # Récupérer la langue sélectionnée depuis le formulaire
+        selected_language = request.form['language']
+
+        # Traduire le contenu en fonction de la langue sélectionnée
+        # Ici, vous utiliserez l'API Google Translate ou une autre méthode de traduction
+        translated_content = translate_content(selected_language)
+
+        # Renvoyer la page avec le contenu traduit
+        return render_template('index.html', content=translated_content)
+
+    # Afficher la page avec le contenu d'origine
+    return render_template('index.html')
+
 
 
 @app.route("/home",methods=['GET','POST'])
@@ -91,6 +107,28 @@ def home():
         else:
             return "Request failed, try again"
     return
+
+@app.route('/set-language', methods=['POST'])
+def set_language():
+    lang_code = request.form['language']
+    g.current_language = lang_code
+    return redirect(request.referrer)
+
+# Cette fonction peut être utilisée pour injecter les variables nécessaires dans le contexte de tous les modèles.
+@app.context_processor
+def inject_languages():
+    # Remplacez cette liste factice par votre propre liste de langues
+    languages = {
+        'en': 'English',
+        'fr': 'French',
+        'es': 'Spanish'
+    }
+    return dict(LANGUAGES=languages)
+
+def translate_content(language):
+    # Code pour traduire le contenu en fonction de la langue sélectionnée
+    # Vous utiliserez ici l'API Google Translate ou une autre méthode de traduction
+    return translated_content
 
 
 if __name__ == "__main__":

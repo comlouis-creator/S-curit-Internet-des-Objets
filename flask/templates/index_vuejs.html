@@ -6,11 +6,21 @@
     <title>Projet IoT</title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
 </head>
 <body>
     <div id="app" class="container">
+
+        <div class="text-right mb-2">
+            <label for="language-select">Language:</label>
+            <select id="language-select" v-model="selectedLanguage" @change="changeLanguage">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+            </select>
+        </div>
+
         <div class="columns">
             <div class="column col-8 col-mx-auto">
                 <h1 class="text-center">Projet IoT groupe 1</h1>
@@ -156,5 +166,9 @@
             }
         });
     </script>
+
+    <script src="/static/js/script.js"></script>
+    <script src="/static/js/index.js"></script>
+
 </body>
 </html>

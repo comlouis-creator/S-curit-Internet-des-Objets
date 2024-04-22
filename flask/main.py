@@ -3,15 +3,66 @@ import os
 import requests  # pour faire des requêtes à nist
 import json
 import re
+import feedparser
 from flask import *
 from flask_babel import Babel
 
 #api_url2 = "https://services.nvd.nist.gov/rest/json/cves/2.0?cvssV3Severity=HIGH"  # url de l'api nist prenant une sévérité basse
 api_url = "https://services.nvd.nist.gov/rest/json/cves/2.0/?"
+mitre_api_url = "https://cve.mitre.org/data/downloads/allitems-cvrf-year-2018.xml"
 #params = {"param1": "valeur1", "param2": "valeur2"}
 
 app = Flask(__name__)
-babel = Babel(app)
+
+# Fonction pour récupérer les données depuis l'API CVE de MITRE
+def get_mitre_data():
+    response = requests.get(mitre_api_url)
+    if response.status_code == 200:
+        # Traitez les données XML ou JSON renvoyées par l'API selon le format
+        mitre_data = response.json()  # Par exemple, supposons que l'API renvoie des données JSON
+        return mitre_data
+    else:
+        return None
+    
+def integrate_cwe_data():
+    # URL de l'API CWE de MITRE
+    api_url = "https://cwe.mitre.org/data/xml/cwec_v4.3.xml"
+    
+    try:
+        # Faire une requête à l'API CWE
+        response = requests.get(api_url)
+        
+        # Vérifier si la requête a réussi
+        if response.status_code == 200:
+            # Récupérer les données XML
+            cwe_data = response.text
+            return cwe_data
+        else:
+            # En cas d'échec de la requête, afficher un message d'erreur
+            return "Failed to fetch CWE data"
+    except Exception as e:
+        # En cas d'erreur, afficher l'exception
+        return str(e)
+    
+def get_zero_day_initiative_data():
+    url = "https://www.zerodayinitiative.com/rss/published/2024/"
+    feed = feedparser.parse(url)
+    
+    if feed.entries:
+        # Si le flux RSS contient des entrées, vous pouvez les manipuler ici
+        # Par exemple, vous pouvez itérer sur les entrées et afficher leurs titres
+        for entry in feed.entries:
+            print("Titre:", entry.title)
+            print("Lien:", entry.link)
+            print("Description:", entry.description)
+            print("----------------------------------------")
+        
+        # Vous pouvez également retourner les données si nécessaire
+        return feed.entries
+    else:
+        # Si le flux RSS est vide ou s'il y a une erreur lors de l'analyse, affichez un message approprié
+        print("Aucune donnée trouvée dans le flux RSS")
+        return None
 
 def collect_data(json_data):
 
@@ -43,19 +94,23 @@ def getCheckboxesValues(param):#vient remplir automatiquement le dictionnaire de
     for value in checkboxes:
         param['keywordSearch']+=f" {value}"
 
-@app.route("/", methods=['GET', 'POST'])
+def integrate_mitre_data():
+    mitre_data = []
+    try:
+        # Utilisez les fonctions de requête appropriées pour obtenir les données de MITRE
+        # Exemple avec une requête GET à une API fictive de MITRE
+        mitre_api_url = "https://cve.mitre.org/data/downloads/allitems-cvrf-year-2018.xml"
+        response = requests.get(mitre_api_url)
+        if response.status_code == 200:
+            mitre_data = response.json()
+        else:
+            print("Failed to fetch MITRE data")
+    except Exception as e:
+        print("Error fetching MITRE data:", e)
+    return mitre_data
+
+@app.route("/")
 def index():
-    if request.method == 'POST':
-        # Récupérer la langue sélectionnée depuis le formulaire
-        selected_language = request.form['language']
-
-        # Traduire le contenu en fonction de la langue sélectionnée
-        # Ici, vous utiliserez l'API Google Translate ou une autre méthode de traduction
-        translated_content = translate_content(selected_language)
-
-        # Renvoyer la page avec le contenu traduit
-        return render_template('index.html', content=translated_content)
-
     # Afficher la page avec le contenu d'origine
     return render_template('index.html')
 
@@ -72,6 +127,20 @@ def home():
             json_data = response.json()
             print(json_data)
             data=collect_data(json_data)
+
+            # rss_url = "https://www.zerodayinitiative.com/rss/published/2024/"
+            # rss_data = feedparser.parse(rss_url)
+            
+            # # Ajout des données du flux RSS à celles déjà existantes
+            # for entry in rss_data.entries:
+            #     cve = {
+            #         'cve': {
+            #             'id': entry.title,
+            #             # Vous pouvez ajouter d'autres informations du flux RSS ici
+            #         }
+            #     }
+            #     data.append(cve)
+
             print(data[0]['cve']['id'])
             return render_template("home.html", title="Home", data=data)
         else:
@@ -103,33 +172,12 @@ def home():
             json_data = response.json()
             data=collect_data(json_data)
             #print(data[0]['cve']['id']) 
+            mitre_data = integrate_mitre_data()
+            data.extend(mitre_data)
             return render_template("home.html", title="Home", data=data)
         else:
             return "Request failed, try again"
     return
-
-@app.route('/set-language', methods=['POST'])
-def set_language():
-    lang_code = request.form['language']
-    g.current_language = lang_code
-    return redirect(request.referrer)
-
-# Cette fonction peut être utilisée pour injecter les variables nécessaires dans le contexte de tous les modèles.
-@app.context_processor
-def inject_languages():
-    # Remplacez cette liste factice par votre propre liste de langues
-    languages = {
-        'en': 'English',
-        'fr': 'French',
-        'es': 'Spanish'
-    }
-    return dict(LANGUAGES=languages)
-
-def translate_content(language):
-    # Code pour traduire le contenu en fonction de la langue sélectionnée
-    # Vous utiliserez ici l'API Google Translate ou une autre méthode de traduction
-    return translated_content
-
 
 if __name__ == "__main__":
     app.run(debug=True)

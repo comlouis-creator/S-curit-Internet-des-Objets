@@ -5,13 +5,29 @@
     <a href="/"><span class="material-symbols-outlined">
     arrow_back
     </span></a>
-    <span class="material-symbols-outlined" id="searchButton" onclick="filterFunc('input',searchInput,cases)">search</span>
+    <span class="material-symbols-outlined" id="searchButton" onclick="filterFunc('input',searchInput,cases)" translate="no">search</span>
     <input type="text" placeholder='Filter results' id="searchbar">
 </div>
 
 
 <div id="results">
 {% for vulnerability in data %}
+
+<!-- <h2>Latest Vulnerabilities</h2>
+  <div class="vulnerabilities">
+    {% for vulnerability in data %}
+      <div class="vulnerability">
+        <h3>{{ vulnerability['title'] }}</h3>
+        <p>{{ vulnerability['published'] }}</p>
+        <p>{{ vulnerability['link'] }}</p>
+        {% if 'descriptions' in vulnerability['cve'] %}
+          <p>{{ vulnerability['cve']['descriptions'][0]['value'] }}</p>
+        {% else %}
+          <p>No description available</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div> -->
 
 <div class="cve-div">
     <h2>{{ vulnerability['cve']['id'] }}</h2>
@@ -35,11 +51,11 @@
         <h2 class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV30'][0]['baseSeverity'] }}</h2>
     {% endif %}
     
-    <h3 class=""><span class="material-symbols-outlined eyeInfo" onclick="display('inspect{{ vulnerability['cve']['id'] }}')">visibility</span> {{ vulnerability['cve']['published'] }} 
+    <h3 class=""><span class="material-symbols-outlined eyeInfo" onclick="display('inspect{{ vulnerability['cve']['id'] }}')" translate="no">visibility</span> {{ vulnerability['cve']['published'] }} 
     
     {% if vulnerability['cve']['references']|length > 0 %}
     <a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}">
-        <span class="material-symbols-outlined">
+        <span class="material-symbols-outlined" translate="no">
             link
         </span>
         </a>
@@ -47,7 +63,7 @@
     </h3>
 
 <div class="inspect" id="inspect{{ vulnerability['cve']['id'] }}">
-    <span class="material-symbols-outlined" onclick="display('inspect{{ vulnerability['cve']['id'] }}')" style="color: red;">close</span>
+    <span class="material-symbols-outlined" onclick="display('inspect{{ vulnerability['cve']['id'] }}')" style="color: red;" translate="no">close</span>
 
 <h1>{{ vulnerability['cve']['id'] }}</h1>
 <p>{{ vulnerability['cve']['descriptions'][0]['value'] }}</p>

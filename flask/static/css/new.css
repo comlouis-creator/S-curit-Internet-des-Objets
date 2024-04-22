@@ -220,3 +220,6 @@ background-image: radial-gradient( circle 780.6px at 10% 20%,  rgba(133,255,189,
     cursor: pointer;
 }
 
+.translated {
+    font-size: 16px; /* Ajustez la taille de police selon vos besoins */
+}

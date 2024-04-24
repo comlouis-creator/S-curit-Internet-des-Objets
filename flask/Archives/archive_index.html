@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Projet IoT</title>
+
+	<link rel="stylesheet" type="text/css" href="/../static/css/new.css">
+	<link rel="stylesheet" type="text/css" href="/../static/css/home.css">
+	<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+  body {
+		font-family: 'Quicksand', sans-serif; /* Utilisation de la police Quicksand */
+		font-size: 16px; /* Taille de police par défaut */
+	}
+	.translated-element {
+            /* Styles pour les éléments traduits */
+            font-size: 14px; /* Exemple : taille de police réduite pour les éléments traduits */
+            color: #888; /* Exemple : couleur de texte différente pour les éléments traduits */
+        }
+	</style>
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+</head>
+
+<body>
+	<form method="post" action="/home" style="with:100%;" >
+		<div class="center-x" id="intro">
+			<h1>Projet IoT groupe 1</h1>
+	   		<h2>Alexandre MEVEL, Louis MORLOT, Vincent MILLOUR, Bilal SAFI</h2>
+	    	<h3>Vulnerability list</h3>
+		</div>
+	
+	<div id="filter-div" style="justify-content: space-evenly;background-color: #fff;">
+		
+		<div style="display: flex;justify-content: space-evenly;align-items: center">
+			<div id="filter-container">
+				<h1>Filter Options</h1>
+						<span class="material-symbols-outlined" id="filter-button" translate="no">tune</span>
+				<div id="filter-1">
+					<div class="options">
+						<h2>Severity</h2>
+							<select name="severity" id="severity">
+								<option value="ALL">ALL</option>
+								<option value="LOW">LOW</option>
+								<option value="MEDIUM">MEDIUM</option>
+								<option value="HIGH">HIGH</option>
+							</select>
+					</div>
+
+					<div class="options" >
+						<h2>Published Before</h2><input type="date" name="dateBefore">
+					</div>
+
+					<div class="options" >
+						<h2>Published After</h2><input type="date" name="dateAfter">
+					</div>
+						<h3 class="warning">
+							<span class="material-symbols-outlined" translate="no">
+								warning
+							</span>
+							Do not exceed 120 days between the two limit dates
+							<span class="material-symbols-outlined" translate="no">
+								warning
+							</span>
+						</h3>
+				</div>
+			</div>
+
+		<div id="submit-div" style="padding: 30px;">
+		<!-- <input type="submit" value="Confirm"> -->
+		<style>
+			#reset-container {
+				position: relative;
+				display: inline-block;
+			}
+		
+			#reset {
+				position: absolute;
+				opacity: 0;
+				width: 100%;
+				height: 100%;
+				cursor: pointer;
+				z-index: 1;
+			}
+		
+			#reset-text {
+				color: white;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 2;
+				cursor: pointer;
+				font-size: 20px;
+				padding: 20px;
+				border-radius: 5px;
+    			border-width: 4px;
+				background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+			}
+
+			#reset-text:hover{
+    background-color: white;
+    background-image: none;
+    box-shadow: 0px 0px 30px #77777756;
+
+   color:#C850C0;
+}
+		</style>
+		
+		<div id="reset-container">
+			<input type="reset" value="" id="reset">
+			<h2 id="reset-text" onclick="document.getElementById('reset').click()">Reset</h2>
+		</div>		
+		
+		</div>
+
+			<div id="objects-brands" class="flex" style="flex-direction: row;">
+			
+				<div id="objects" style="width: 600px;">
+					<h1>Category of objects</h1>
+					<div class="flex  column" style="flex-wrap: wrap;">
+						<div class="flex"><input type="checkbox" id="camera" name="checkboxes" value="camera"><label for="camera"><h2>Camera</h2></label></div>
+						<div class="flex"><input type="checkbox" id="headphones" name="checkboxes" value="headphones"><label for="headphones"><h2>Headphones</h2></label></div>
+						<div class="flex"><input type="checkbox" id="smartwatches" name="checkboxes" value="smartwatch"><label for="smartwatches"><h2>SmartWatches</h2></label></div>
+						<div class="flex"><input type="checkbox" id="tablets" name="checkboxes" value="tablet"><label for="tablets"><h2>Tablets</h2></label></div>
+						<div class="flex"><input type="checkbox" id="fridges" name="checkboxes" value="fridge"><label for="fridges"><h2>Fridges</h2></label></div>
+						<div class="flex"><input type="checkbox" id="gps" name="checkboxes" value="gps"><label for="gps"><h2>GPS</h2></label></div>
+						<div class="flex"><input type="checkbox" id="cars" name="checkboxes" value="car"><label for="cars"><h2>Cars</h2></label></div>
+						<div class="flex"><input type="checkbox" id="rfid" name="checkboxes" value="rfid"><label for="rfid"><h2>RFID</h2></label></div>
+						<div class="flex"><input type="checkbox" id="microphones" name="checkboxes" value="microphone"><label for="microphones"><h2>Microphones</h2></label></div>
+						<div class="flex"><input type="checkbox" id="wifi" name="checkboxes" value="wifi"><label for="wifi"><h2>Wifi</h2></label></div>
+						<div class="flex"><input type="checkbox" id="arduino" name="checkboxes" value="Arduino"><label for="arduino" ><h2>Arduino</h2></label></div>
+						<div class="flex"><input type="checkbox" id="sensor" name="checkboxes" value="sensor"><label for="sensor" ><h2>Sensor</h2></label></div>
+					</div>
+				</div>
+				
+				<div id="brands" style="width: 600px;">
+					<h1 style=>Brands</h1>
+					<div class="flex  column" style="flex-wrap: wrap;">
+						<div class="flex"><input type="checkbox" id="Panasonic" name="checkboxes" value="panasonic"><label for="Panasonic"><h2>Panasonic</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Apple" name="checkboxes" value="apple"><label for="Apple"><h2>Apple</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Samsung" name="checkboxes" value="samsung"><label for="Samsung"><h2>Samsung</h2></label></div>
+						<div class="flex"><input type="checkbox" id="HP" name="checkboxes" value="hp"><label for="HP"><h2>HP</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Androïd" name="checkboxes" value="android"><label for="Androïd"><h2>Android</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Huaweï" name="checkboxes" value="huawei"><label for="Huaweï"><h2>Huawei</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Logitech" name="checkboxes" value="logitech"><label for="Logitech"><h2>Logitech</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Xiaomi" name="checkboxes" value="xiaomi"><label for="Xiaomi"><h2>Xiaomi</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Google" name="checkboxes" value="google"><label for="Google"><h2>Google</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Realme" name="checkboxes" value="realme"><label for="Realme"><h2>Realme</h2></label></div>
+						<div class="flex"><input type="checkbox" id="Sony" name="checkboxes" value="sony"><label for="Sony"><h2>Sony</h2></label></div>
+						
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+	</div>
+<script>
+	let button=document.getElementById("filter-button");
+	let div=document.getElementById("filter-div");
+	button.addEventListener('click',function(){
+		div.classList.toggle("active")
+	})
+
+</script>
+
+<div style="width:100%;">
+<div class="options" id="searchWord" style="">
+	<h1>Word Search</h1><input type="text" name="keyWords" placeholder="Search">
+	<input type="submit" id="submitButton" value="Search" style="margin: 15px;">
+</div>
+</div>
+
+	<div id="data" class="center-x">
+		<!-- <div style="width: 100%;height: 100px;background: transparent;"></div> -->
+	 {% block content %}{% endblock %}
+		
+		<script>
+		document.getElementById('checkObjects').addEventListener('click', function() {
+		let objectCategories = [];
+		const objectLabels = document.querySelectorAll('#objects-brands label');
+		objectLabels.forEach(label => {
+    	let checkbox = document.querySelector('#' + label.htmlFor);
+    	if (checkbox && checkbox.checked) {
+        objectCategories.push(label.innerText.trim());
+    		}
+		});
+
+		console.log(objectCategories);
+		});
+
+
+		</script>
+	
+		
+	</div>
+	</form>
+
+	<style>
+		#custom_translation_overlay {
+			background-color: #f2f2f2;
+    		color: #333;
+			width: 169px; /* ajustez la largeur selon vos besoins */
+			height: 18px; /* ajustez la hauteur selon vos besoins */
+		}
+	</style>
+	
+	<div id="custom_translation_overlay"></div>
+	
+
+<div id="google_translate_element"></div>
+<div id="custom_translation_elements">
+    <div id="custom_translation_overlay"></div>
+</div>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+    );
+}
+</script>
+
+<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<style>
+/* Masquer le texte "Fourni par" */
+span.goog-logo {
+    display: none;
+}
+
+/* Masquer l'icône de Google Traduction */
+span.jfk-bubble-source {
+    display: none;
+}
+
+/* Positionner l'overlay juste au-dessus du texte "Fourni par Google Traduction" */
+#custom_translation_overlay {
+    position: relative;
+    margin-top: -20px; /* Ajustez la valeur pour positionner correctement l'overlay */
+    z-index: 999; /* Assure que l'élément est au-dessus du texte */
+}
+body > .skiptranslate {
+    display: none;
+}
+</style>
+
+</body>
+</html>

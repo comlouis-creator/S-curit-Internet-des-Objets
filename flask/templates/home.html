@@ -13,60 +13,40 @@
 <div id="results">
 {% for vulnerability in data %}
 
-<!-- <h2>Latest Vulnerabilities</h2>
-  <div class="vulnerabilities">
-    {% for vulnerability in data %}
-      <div class="vulnerability">
-        <h3>{{ vulnerability['title'] }}</h3>
-        <p>{{ vulnerability['published'] }}</p>
-        <p>{{ vulnerability['link'] }}</p>
-        {% if 'descriptions' in vulnerability['cve'] %}
-          <p>{{ vulnerability['cve']['descriptions'][0]['value'] }}</p>
-        {% else %}
-          <p>No description available</p>
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div> -->
-
 <div class="cve-div">
-    <h2>{{ vulnerability['cve']['id'] }}</h2>
-    {% if 'cvssMetricV2' in vulnerability['cve']['metrics'] %}
-        {% if vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == 'HIGH' %}
-        <h2 class="thSearch redHigh">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}
+    <h2>{{ vulnerability['CVE_ID'] }}</h2>
+        {% if vulnerability['Risk'] == 'HIGH' %}
+        <h2 class="thSearch redHigh">{{ vulnerability['Risk'] }}
         </h2>
 
-        {% elif vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == 'MEDIUM' %}
-        <h2 class="thSearch orangeMedium">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}
+        {% elif vulnerability['Risk'] == 'MEDIUM' %}
+        <h2 class="thSearch orangeMedium">{{ vulnerability['Risk'] }}
         </h2>
 
-        {% elif vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == "LOW" %}
-        <h2 class="thSearch greenLow">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}
+        {% elif vulnerability['Risk'] == "LOW" %}
+        <h2 class="thSearch greenLow">{{ vulnerability['Risk'] }}
         </h2>
+
+        {% else %}
+        <h2 class="thSearch">{{ vulnerability['Risk'] }}</h2>
         {% endif %}
-        <h2>{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['cvssData']['baseScore'] }}</h2>
-    {% endif %}
-
-    {% if 'cvssMetricV30' in vulnerability['cve']['metrics'] %}
-        <h2 class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV30'][0]['baseSeverity'] }}</h2>
-    {% endif %}
+        
+        <h3 class=""><span class="material-symbols-outlined eyeInfo" onclick="display(`inspect{{ vulnerability['CVE_ID'] }}`)" translate="no">visibility</span> {{ vulnerability['Published'] }} 
     
-    <h3 class=""><span class="material-symbols-outlined eyeInfo" onclick="display('inspect{{ vulnerability['cve']['id'] }}')" translate="no">visibility</span> {{ vulnerability['cve']['published'] }} 
-    
-    {% if vulnerability['cve']['references']|length > 0 %}
-    <a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}">
-        <span class="material-symbols-outlined" translate="no">
-            link
-        </span>
-        </a>
-    {% endif %}
-    </h3>
+            {% if vulnerability['Reference'] != "None" %}
+            <a target="_blank" href="{{ vulnerability['Reference'] }}">
+                <span class="material-symbols-outlined" translate="no">
+                    link
+                </span>
+                </a>
+            {% endif %}
+            </h3>
 
-<div class="inspect" id="inspect{{ vulnerability['cve']['id'] }}">
-    <span class="material-symbols-outlined" onclick="display('inspect{{ vulnerability['cve']['id'] }}')" style="color: red;" translate="no">close</span>
+<div class="inspect" id="inspect{{ vulnerability['CVE_ID'] }}">
+    <span class="material-symbols-outlined" onclick="display(`inspect{{ vulnerability['CVE_ID'] }}`)" style="color: red;" translate="no">close</span>
 
-<h1>{{ vulnerability['cve']['id'] }}</h1>
-<p>{{ vulnerability['cve']['descriptions'][0]['value'] }}</p>
+<h1>{{ vulnerability['CVE_ID'] }}</h1>
+<p>{{ vulnerability['Description'] }}</p>
 
 </div>
 
@@ -84,60 +64,6 @@
         e.classList.toggle("displayed")
     }
 </script>
-
-<!-- <table style="border: 1px solid white;" cellspacing="0"> 
-    <thead>
-        <tr>
-            <th>CVE</th>
-            <th>Description</th>
-            <th>Severity</th>
-            <th>Date</th>
-            <th>Link</th>
-        </tr>
-    </thead>
-
-    <tbody>
-    
-        {% for vulnerability in data %}
-        <tr>
-            <td class="thSearch">{{ vulnerability['cve']['id'] }}</td>
-            <td class="thSearch">{{ vulnerability['cve']['descriptions'][0]['value'] }}</td>
-
-            {% if 'cvssMetricV2' in vulnerability['cve']['metrics'] %}
-            
-                {% if vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == 'HIGH' %}
-                <td class="thSearch redHigh">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</td>
-
-                {% elif vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == 'MEDIUM' %}
-                <td class="thSearch orangeMedium">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</td>
-
-                {% elif vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] == "LOW" %}
-                <td class="thSearch greenLow">{{ vulnerability['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'] }}</td>
-                {% endif %}
-
-            {% elif 'cvssMetricV30' in vulnerability['cve']['metrics'] %}
-                <td class="thSearch">{{ vulnerability['cve']['metrics']['cvssMetricV30'][0]['baseSeverity'] }}</td>
-            {% else %}
-            <td class="thSearch">Unknown</td>
-            {% endif %}
-            
-            <td class="thSearch">{{ vulnerability['cve']['published'] }}</td>
-            
-            {% if vulnerability['cve']['references']|length > 0 %}
-            <td class="thSearch"><a target="_blank" href="{{ vulnerability['cve']['references'][0]['url'] }}">
-                <span class="material-symbols-outlined">
-                    link
-                </span>
-                </a>
-            </td>
-            {% else %}
-            <td class="thSearch">Unknown</td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </tbody>
-    
-</table> -->
 
 <script>
     var searchInput=document.getElementById("searchbar");
@@ -163,28 +89,5 @@
 
     }
 </script>
-
-<!-- <script>
-    // Dans votre fichier JavaScript
-    document.addEventListener('DOMContentLoaded', function() {
-        var invisibleElement = document.getElementById('objects-brands');
-        var filterButton=document.getElementById("checkObjects");
-        var searchWord=document.getElementById('searchWord');
-        // Obtenir l'URL actuelle
-        var currentURL = window.location.href;
-    
-        // Vérifier si l'URL correspond à celle spécifique où vous souhaitez rendre l'élément invisible
-        if (currentURL.indexOf('/home') !== -1) {
-            invisibleElement.style.visibility = 'hidden';
-            filterButton.style.visibility="hidden";
-            searchWord.style.visibility="hidden"
-        } else {
-            invisibleElement.style.visibility = 'visible';
-            filterButton.style.visibility="visible";
-            searchWord.style.visibility="visible";
-        }
-    });
-    
-</script> -->
 
 {% endblock %}
